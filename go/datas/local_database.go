@@ -5,6 +5,7 @@
 package datas
 
 import (
+	"fmt"
 	"github.com/stormasm/noms/go/chunks"
 	"github.com/stormasm/noms/go/types"
 )
@@ -57,6 +58,7 @@ func (ldb *LocalDatabase) doHeadUpdate(ds Dataset, updateFunc func(ds Dataset) e
 		ldb.vbs.FlushAndDestroyWithoutClose()
 		ldb.vbs = nil
 	}
+	fmt.Println("datas.local_database: doHeadUpdate")
 	err := updateFunc(ds)
 	return ldb.GetDataset(ds.ID()), err
 }

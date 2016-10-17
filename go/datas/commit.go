@@ -5,6 +5,7 @@
 package datas
 
 import (
+	"fmt"
 	"sort"
 
 	"github.com/stormasm/noms/go/d"
@@ -52,6 +53,7 @@ var valueCommitType = makeCommitType(types.ValueType, nil, types.EmptyStructType
 //
 // The new type gets combined as a union type for the value/meta of the inner commit struct.
 func NewCommit(value types.Value, parents types.Set, meta types.Struct) types.Struct {
+	fmt.Println("datas.commit: NewCommit")
 	t := makeCommitType(value.Type(), valueTypesFromParents(parents, ValueField), meta.Type(), valueTypesFromParents(parents, MetaField))
 	return types.NewStructWithType(t, types.ValueSlice{meta, parents, value})
 }

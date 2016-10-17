@@ -157,6 +157,7 @@ type internalLevelDBStore struct {
 func newBackingStore(dir string, maxFileHandles int, dumpStats bool) *internalLevelDBStore {
 	d.PanicIfTrue(dir == "", "dir cannot be empty")
 	d.PanicIfError(os.MkdirAll(dir, 0700))
+	fmt.Println("chunks.leveldb_store: newBackingStore ",dir)
 	db, err := leveldb.OpenFile(dir, &opt.Options{
 		Compression:            opt.NoCompression,
 		Filter:                 filter.NewBloomFilter(10), // 10 bits/key
